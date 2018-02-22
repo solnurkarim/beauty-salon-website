@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+			*, *:before, *:after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				background-image: url('../images/bg.jpg');
+				background-size: cover;
+				background-position: center;
+				background-attachment: fixed;
+				background-repeat: no-repeat;
+				/*height: 100%;*/
+				/*height: 1px;*/
+				/*min-height: 100vh;*/
+				overflow: -moz-scrollbars-vertical; /*scrollbar always visible*/
+    			overflow-y: scroll;
+				font-family: 'Poiret One', sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-size: 1vmax;
+			}
+			
+			body {
+				position: relative;
+				min-height: 100vh;
+				padding-bottom: 2.5vh;
+			}
+
+			/* navigation bar styles */
+			header {
+				height: 18vh;
+				display: flex;
+			}
+
+			nav {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+				padding: 0 !important;
+			}
+
+			a {
+				text-decoration: none;
+				color: #fff;
+			}
+
+			h1, h2, p {
+				margin-bottom: 20px;
+			}
+
+			p {
+				margin-top: 20px;
+			}
+
+			main {
+				color: #fff;
+			}
+
+			ul {
+				list-style-type: none;
+			}
+
+			#logo-wrap {
+				width: 20%;
+				margin-left: 20%;
+			}
+
+			#logo {
+				background-image: url('../images/logo-white.png');
+				height: 11vh;
+				background-size: contain;
+				background-repeat: no-repeat;
+				display: block;
+			}
+
+			#nav-list-wrap {
+				position: relative;
+				/*position: absolute;*/
+				/*right: 0;*/
+				/*display: table;*/
+				padding-right: 20%;
+				white-space: nowrap;
+			}
+			
+			#nav-list-wrap::after {
+				content: " ";
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: -1;
+				background: linear-gradient(to left, #000 70%, transparent);
+				height: 100%;
+				width: 100%;
+			}
+
+			nav ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				font-size: 0;
+				display: inline-block;
+			}
+
+			#nav-list {
+				margin-right: 20px;
+				/*width: 80%;*/
+			}
+
+			.nav-li {
+				display: inline-block;
+			}
+
+			.nav-button {
+				padding: 15px;
+				line-height: 8vh;
+				display: block;
+				text-decoration: none;
+				color: #fff;
+				font-size: 1vmax;
+			}
+
+			.nav-button:hover {
+				background-color: #ffffff96;
+				transition: .5s;
+			}
+
+			.nav-li:hover .drop-list {
+				display: block;
+			}
+
+			.active {
+				font-weight: bold;
+			}
+
+			/* dropdown list animation */
+			@keyframes drop-anim {
+				0% {opacity: 0; margin-top: 12px;}
+				100% {opacity: 1; margin-top: 0;}
+			}
+
+			/* dropdown list */
+			.drop-list {
+				border-top: 2px solid #860186;
+				margin-top: 0;
+				display: none;
+				animation: drop-anim .5s;
+				position: absolute;
+				background-color: #440144;
+				z-index: 10;
+				font-size: 1vw;
+			}
+			
+			.drop-button {
+				color: #fff;
+				font-size: 0.8em;
+				padding: 10px 15px;
+				display: block;
+				font-weight: bold;
+			}
+
+			.drop-button:hover {
+				background-color: #6d026d;
+				transition: .3s;
+			}
+			/* dropdown-list end */
+			
+			/* solial network icon styles */
+			.icon-button {
+				margin: 0 0 0 10px;
+				font-size: 16px;
+			}
+
+			.icon-button:hover {
+				color: #ababab;
+				transition: .5s;
+			}
+			/* navigation bar styles end*/
+
+			#content {
+				width: 60%;
+				margin: auto;
+				/*height: 0px;*/
+				/*min-height: 100%;*/
+				/*height: 100%;*/
+				/*background-color: #000;*/
+				/*text-align: center;*/
+			}
+
+			.main-inner {
+				margin: auto;
+				font-size: 1.1em;
+				background-color: #000;
+				padding: 40px;
+				min-height: 75vh;
+				margin-bottom: 20px;
+				/*box-shadow: 0 0 10px #000;*/
+			}
+			
+			/* loading animation styles */
+			#load {
+				position: fixed;
+				height: 2vh;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.image-wrap {
+				height: 200px;
+				background-repeat: no-repeat;
+				background-image: url('../images/sania_about.jpg');
+				background-size: cover;
+				background-position: 0 25%;
+				margin-bottom: 4vmin;
+			}
+
+			.pgraph {
+				font-size: 0.9em;
+			}	
+			
+			/* front-page */
+			#bg-info {
+				width: 100%;
+				position: fixed;
+				bottom: 8%;
+			}
+
+			#bg-title, #bg-desc {
+				padding-left: 20%;
+				line-height: 8vh;
+				background-color: #000;
+				/*padding-left: 200px;*/
+				padding-right: 5%;
+				margin-top: 20px;
+				display: table;
+				
+			}
+
+			#bg-title {
+				text-transform: uppercase;
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+			/* front-page end*/
+
+			footer {
+				position: absolute; /*always bottom footer*/
+				bottom: 0;
+				width: 100%;
+				background-color: #000;
+				height: 2.5vh;
+				display: flex;
+				color: #fff;
+				justify-content: space-between;
+				align-items: center;
+				padding-left: 20%;
+				padding-right: 20%;
+				font-size: 0.8vmax;
+			}
+
+			/* gallery styles */
+			.gallery {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.gallery-img-wrap {
+				border: 1px solid #000;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				position: relative;
+				transition: .5s;
+			}
+
+			.img-wrap {
+				height: 300px;
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+			}
+
+			.img-wrap img {
+				width: 100%;
+			}
+
+			.img-wrap:hover img {
+				
+			}
+
+			.gallery-img-wrap img, .courses-img-wrap img {
+				height: 100%;
+				transition: .5s;
+			}
+
+			.gallery-img-wrap {
+				width: 25%;
+				height: 200px;
+			}
+
+			.gallery-img-wrap:hover img {
+				height: 130%;
+			}
+			
+			.gallery-img-wrap:hover:before {
+				content: '';
+				z-index: 5;
+				display: block;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #fff;
+				opacity: .3;
+			}
+			/* gallery styles end*/
+
+			button.registration {
+				color: #000;
+				background: #fff;
+				padding: 13px 20px;
+				font-weight: bold;
+				transition: .2s ease-out;
+			}
+
+			button.registration:hover {
+				background: #440144;
+				color: #fff;
+			}
+
+			button {
+				outline: none;
+				cursor: pointer;
+				border: none;
+			}
+
+			/* courses page lists */
+			.icon-ok, .icon-present {
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: center center;
+				display: inline-block;
+				width: 25px;
+				height: 20px;
+				vertical-align: top;
+			}
+
+			.icon-ok {
+				background: url('../images/ok.png');
+			}
+			
+			.icon-present {
+				background: url('../images/present.png');
+			}
+			
+			.course-list {
+				margin-bottom: 20px;
+			}
+
+			.course-name {
+				display: inline-flex;
+			}
+
+			.course-name button {
+				color: #fff;
+				font-weight: bold;
+				font-size: 0.8em;
+				border-radius: 3px;
+				padding: 6px 15px;
+				background: none;
+				transition: .4s;
+			}
+
+			.course-name:hover button, .course-name:focus button, .course-name-active button {
+				color: #000;
+				background: #fff;
+			}
+
+			.course-add-info {
+				display: inline-block;
+				vertical-align: top;
+				width: 40%;
+			}
+
+			.courses-img-wrap {
+				height: 250px;
+				margin: 0 20px 20px 0;
+			}
+
+			.courses-img-wrap img {
+				width: 100%;
+			}
+			
+			.course-desc {
+				display: inline-block;
+				width: 55%;
+			}
+
+			.course-desc-small {
+				font-style: italic;
+				font-family: sans-serif;
+				font-size: 0.8em;
+				margin-top: 20px;
+			}
+
+			/* smaller screens/mobile devices support */
+			@media only screen and (max-width: 768px) {
+				body {
+					font-size: 2vmax;
+				}
+
+				header {
+					height: 8vh;
+				}
+
+				nav {
+					display: block;
+					background: #000;
+				}
+
+				#nav-list-wrap {
+					background: #000;
+					top: 8vh;
+					padding-left: 10px;
+					padding-bottom: 10px;
+					display: none;
+				}
+				
+				#nav-icons {
+					position: absolute;
+					right: 3vw;
+					bottom: 4vmax;
+					transform: scale(1.5);
+					text-align: center;
+				}
+				
+				#nav-mobile {
+					position: absolute;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					align-content: space-evenly;
+					height: 6vh;
+					width: 7vh;
+					right: 2vw;
+					top: 1vh;
+					border-radius: 15%;
+					border: 2px solid #fff;
+				}
+
+				#nav-mobile div {
+					width: 55%;
+					height: 2px;
+					background: #fff;
+					border-radius: 15%;
+				}
+
+				#nav-icons li a {
+					display: block;
+					padding: 5px 0;
+				}
+
+				#logo-wrap {
+					display: none;
+				}
+
+				.nav-button {
+					font-size: 2vmax;
+					line-height: 8vmin;
+				}
+
+				.nav-li {
+					display: block;
+				}
+
+				#content {
+					width: 100%;
+				}
+
+				.main-inner {
+					padding: 1px 20px;
+				}
+
+				#bg-title, #bg-desc {
+					padding-left: 20px;
+				}
+
+				nav {
+					padding: 0 10px;
+				}
+
+				a.nav-button {
+					padding: 0 8px;
+				}
+
+				footer {
+					font-size: 0.8em;
+					padding: 0 20px;
+					height: 3vmax;
+				}
+			}
+
+			@media only screen and (min-width: 768px) {
+				nav {
+					padding: 0 20px;
+				}
+
+				a.nav-button {
+					padding: 0 10px;
+				}
+			}
+
+			@media only screen and (min-width: 992px) {
+				nav {
+					padding: 0 50px;
+				}
+			}
+
+			@media only screen and (min-width: 1200px) {
+				nav {
+					padding: 0 60px;
+				}
+			}
+
