@@ -1,12 +1,19 @@
 $(document).ready(function() {
+	/* 
+	modified version of James Padolsey's 'jQuery animation tutorial' on tutsplus.com
+	*/
+
 	var toLoad;
 	var hash = window.location.hash.substr(1);
 
+	// page load URL check for bookmarks/page refresh
 	var href = $('#nav-list li a').each(function(){
 		var href = $(this).attr('href');
-		if( hash != 'index' && hash == href.substr(0, href.length-5) ){
+		if( hash == href.substr(0, href.length-5) ){
 			toLoad = hash + '.html';
-			if( hash == 'gallery' ){
+			if( hash == 'index' || hash == '' ){
+				loadHome();
+			} else if( hash == 'gallery' ){
 				$('#content').load(toLoad, loadGallery);
 			} else {
 				$('#content').load(toLoad);
@@ -32,12 +39,6 @@ $(document).ready(function() {
 	});
 
 	function prepareContent() {
-		// if(hash == 'index'){
-		// 	$('#content').fadeOut('slow',loadContent);
-		// 	$('#bg-info').fadeIn('slow', hideLoader);
-		// } else {
-		// 	$('#content').fadeOut('slow',loadContent);
-		// }
 		$('#content').fadeOut('slow', loadContent);
 		if(hash == 'index'){
 			$('#bg-info').fadeIn('slow', hideLoader);
@@ -73,12 +74,19 @@ $(document).ready(function() {
 		});
 	}
 
+	function loadHome() {
+		$('#bg-info').fadeIn(1200);
+	}
+
 	// navbar display toggle for smaller screens/mobile devices
 	$('#nav-mobile').click(function(){
 		$('#nav-list-wrap').slideToggle();
 	});
 
-	$('#nav-mobile ~ nav a').click(function(){
-		$('#nav-list-wrap').slideToggle();
+	$('nav a').click(function(){
+		if($('#nav-mobile').css('display') == true){
+			$('#nav-list-wrap').slideToggle();	
+		}
+		
 	});
 });
