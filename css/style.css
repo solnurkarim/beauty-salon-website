@@ -28,6 +28,7 @@ body {
 	position: relative;
 	min-height: 100vh;
 	padding-bottom: 2.5vh;
+	color: #fff;
 }
 
 /* navigation bar styles */
@@ -57,16 +58,12 @@ p {
 	margin-top: 20px;
 }
 
-main {
-	color: #fff;
-}
-
 ul {
 	list-style-type: none;
 }
 
 #logo-wrap {
-	width: 100%;
+	width: 20%;
 	position: relative;
 }
 
@@ -118,19 +115,44 @@ nav ul {
 	text-decoration: none;
 	color: #fff;
 	font-size: 1rem;
+	position: relative;
 }
 
 .nav-button:hover {
-	background-color: #ffffff96;
-	transition: .5s;
-}
-
-.nav-li:hover .drop-list {
-	display: block;
+	/*background-color: #ffffff96;*/
+	/*transition: .5s;*/
+	font-weight: bold;
 }
 
 .active {
 	font-weight: bold;
+}
+
+.nav-button:hover:after,
+.active:after {
+	content: '';
+	position: absolute;
+	height: 4px;
+	background: radial-gradient(#fff 20%, transparent 80%);
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	animation: active .5s ease forwards;
+}
+
+@keyframes active {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.nav-li:hover .drop-list {
+	display: block;
 }
 
 /* dropdown list animation */
@@ -138,6 +160,10 @@ nav ul {
 	0% {opacity: 0; margin-top: 12px;}
 	100% {opacity: 1; margin-top: 0;}
 }
+
+
+
+/* to change to JS append/remove span with a halved height */
 
 /* dropdown list */
 .drop-list {
@@ -255,19 +281,19 @@ footer {
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	/*justify-content: space-evenly;*/
 }
 
 .gallery-img-wrap {
 	border: 1px solid #000;
 	overflow: hidden;
-	/*display: flex;*/
-	justify-content: center;
-	align-items: center;
 	cursor: pointer;
 	position: relative;
 	transition: .5s;
-	flex: 1 auto;
+	/*display: flex;*/
+	/*justify-content: center;
+	align-items: center;*/
+	/*flex: 1 auto;*/
 }
 
 .img-wrap {
@@ -292,7 +318,6 @@ footer {
 .gallery-img-wrap {
 	height: 200px;
 	width: 25%;
-
 }
 
 .gallery-img-wrap:hover img {
@@ -365,6 +390,7 @@ button {
 	padding: 6px 15px;
 	background: none;
 	transition: .4s;
+	margin-bottom: 8px;
 }
 
 .course-name:hover button, .course-name:focus button, .course-name-active button {
@@ -399,8 +425,130 @@ button {
 	margin-top: 20px;
 }
 
-/* smaller screens/mobile devices support */
+/* registration form */
+#form-bg {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	/*background: rgba(255, 255, 255, 0.1);*/
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+}
 
+#form-container {
+	/*background: #440144;*/
+	/*border: 3px solid #fff;*/
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 400px;
+	width: 350px;
+	color: #fff;
+}
+
+#form-container form {
+	font-size: 1.2em;
+	font-weight: bold;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#icon-close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#icon-close:before, #icon-close:after {
+	content: '';
+	display: block;
+	height: 4px;
+	width: 30px;
+	background: #fff;
+	position: absolute;
+	border-radius: 20px;
+}
+
+#icon-close:before {
+	transform: rotate(-45deg);
+}
+
+#icon-close:after {
+	transform: rotate(45deg);
+}
+
+#form-container form label, #form-container form input {
+	display: block;
+	margin-bottom: 5px;
+	position: relative;
+	width: 300px;
+	transition: .2s;
+}
+
+#form-container form label {
+	cursor: pointer;
+}
+
+#form-container form label:hover #form-container form input,
+#form-container form input:hover {
+	box-shadow: 0 0 20px #fff;
+}
+
+#form-container form input:focus {
+	transform: scale(1.1);
+}
+
+#form-container form input {
+	margin-bottom: 30px;
+	height: 35px;
+	border: 1px solid #80008a;
+	outline: none;
+	
+}
+
+#form-container button {
+	background: #440144;
+	color: #fff;
+	outline: none;
+	border: none;
+	padding: 15px 40px;
+}
+
+#form-container button:hover {
+	background: #6d026d;
+}
+
+/* import */
+input {
+	border-color: #E9E9E9;
+	font-size: 16px;
+	line-height: 2;
+	text-indent: 15px;
+	background: #440144;
+	color: #fff;
+}
+
+/*input:placeholder-shown,
+input::-webkit-input-placeholder {
+	color: #949494 !important;
+	text-indent: 15px;
+}*/
+/* /registration form */
+
+#nav-mobile {
+	display: none;
+}
+
+/* smaller screens/mobile devices support */
 @media only screen and (max-width: 768px) {
 	html {
 		font-size: 2vmax;
@@ -426,18 +574,19 @@ button {
 	.main-inner {
 		padding: 1px 20px;
 		margin: 0;
-		/*min-height: 100%;*/
+		min-height: 100%;
 	}
 
 	#nav-mobile {
 		position: absolute;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: flex-end;
+		justify-content: center;
 		align-content: center;
 		height: 100%;
 		width: 9vmax;
 		right: 2vw;
+		background: transparent;
 		z-index: 101;
 	}
 
@@ -465,7 +614,7 @@ button {
 		right: 2vmax;
 		bottom: 4vmax;
 		transform: scale(1.6);
-		-ms-zoom: 1.6;
+		/*-ms-zoom: 1.6;*/
 		text-align: center;
 	}
 
@@ -489,7 +638,6 @@ button {
 		display: block;
 		font-size: 2vmax;
 		line-height: 8vmin;
-		width: 90%;
 	}
 
 	.nav-li {
@@ -536,6 +684,7 @@ button {
 
 	#nav-list-wrap {
 		padding-right: 10%;
+		display: block !important;
 	}
 
 	a.nav-button {
@@ -574,4 +723,3 @@ button {
 		padding: 0 20%;
 	}
 }
-
