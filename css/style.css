@@ -29,6 +29,7 @@ body {
 	min-height: 100vh;
 	padding-bottom: 2.5vh;
 	color: #fff;
+	z-index: -11;
 }
 
 /* navigation bar styles */
@@ -240,16 +241,17 @@ nav ul {
 }	
 
 /* front-page */
-#bg-info {
+#slider-data {
 	display: none;
 	width: 100%;
 	position: fixed;
 	bottom: 8%;
 	left: 0;
-	line-height: 8vh;
+	z-index: 1;
 }
 
-#bg-title, #bg-desc {
+#slider-title, #slider-desc {
+	line-height: 8vh;
 	padding-left: 20%;
 	background-color: #000;
 	padding-right: 5%;
@@ -257,7 +259,8 @@ nav ul {
 	display: table;
 }
 
-#bg-title {
+#slider-title {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	align-content: center;
@@ -558,6 +561,7 @@ input::-webkit-input-placeholder {
 			display: inline-flex;
 			justify-content: center;
 			align-items: center;
+			height: 8vh;
 		}
 
 		#control-left-arrow > div,
@@ -615,7 +619,7 @@ input::-webkit-input-placeholder {
 
 		#slider-controls {
 			display: flex;
-			flex-wrap: wrap;
+			/*flex-wrap: wrap;*/
 			align-items: center;
 			margin-right: 20px;
 		}
@@ -770,6 +774,26 @@ input::-webkit-input-placeholder {
 
 	#bg-title, #bg-desc {
 		padding-left: 20px;
+	}
+
+	#slider-title {
+		font-size: 0.9em;
+
+	}
+
+	#slider-title, #slider-desc {
+		padding: 0 10px;
+	}
+
+	#slider-controls:after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 1px;
+	}
+
+	.bold {
+		font-weight: bold;
 	}
 
 	footer {
