@@ -15,18 +15,20 @@ $(document).ready(function() {
 				$('#content').load(toLoad);
 			}
 		}
-
 		// select menu item based on URL
 		if( toLoad == href || (hash == '' && href == 'index.html') ){
-			$(this).addClass('active');
+			if( window.innerWidth >= 768 ){
+				$(this).closest('.nav-li').find('.nav-button').addClass('active');
+			} else {
+				$(this).closest('.nav-li').find('.nav-button').addClass('bold');
+			}
 		}
 	});
 
-	// initial page loading/page refresh fade animation
+	// fade animation on page load/refresh 
 	$('#content').css('display', 'none').fadeIn(1000);
 
 	// display background image on page load/refresh
-	// $('.slider-image').eq(0).fadeIn(1000);
 	$('.slider-image').eq(0).css('opacity', 1);
 
 	// slider arrow autofocus on page load/refresh
@@ -37,11 +39,16 @@ $(document).ready(function() {
 		window.location.hash = $(this).attr('href').substr(0, $(this).attr('href').length-5);
 		document.title = $(this).text();
 		// underline selected menu item
-		if($(this).hasClass('nav-button')){
+		if($(this).is('.nav-button, .drop-button') && window.innerWidth >= 768){
 			$($('.nav-button')).each(function(){
 				$(this).removeClass('active');
 			});
-			$(this).addClass('active');
+			$(this).closest('.nav-li').find('.nav-button').addClass('active');
+		} else if($(this).is('.nav-button, .drop-button')) {
+			$($('.nav-button')).each(function(){
+				$(this).removeClass('active, bold');
+			});
+			$(this).closest('.nav-li').find('.nav-button').addClass('bold');
 		}
 		return false;
 	});
@@ -58,7 +65,7 @@ $(document).ready(function() {
 	function prepareContent() {
 		$('#content').fadeOut('slow', loadContent);
 		if(hash == 'index'){
-			$('#bg-info').fadeIn('slow', hideLoader);
+			$('#slider-data').fadeIn('slow', hideLoader);
 		}
 		$('#load').remove();
 		$('main').append('<img src="svg-loaders/three-dots.svg" id="load">');
@@ -68,7 +75,7 @@ $(document).ready(function() {
 	function loadContent() {
 		if(hash != 'index'){
 			$('#content').load(toLoad, showNewContent);
-			$('#bg-info').fadeOut('slow');
+			$('#slider-data').fadeOut('slow');
 		}
 	}
 
@@ -92,7 +99,7 @@ $(document).ready(function() {
 	}
 
 	function showIndex() {
-		$('#bg-info').fadeIn(1200);
+		$('#slider-data').fadeIn(1200);
 	}
 
 	// navbar display toggle for smaller screens/mobile devices
@@ -116,44 +123,61 @@ $(document).ready(function() {
 	let sliderTimer = setInterval(slideNext, 8000);
 
 	// slider controls
-	let currentBg = $('.slider-image:first-child');
+	let currentSlide = $('.slider-image:first-child');
+	let currentSlideIndex = 0;
+	let slideAuthorsArr = [
+						"MAKEUP BY ANASTASIA STAR",
+						"STYLE BY ALIYA SULEIMENOVA",
+						"NAILS BY MARIA KOVALCHUK"
+						];
+	let slideDescArr = [
+						"Прически от сертифицированных и признанных мастеров",
+						"Индивидуальный подбор стиля",
+						"Маникюр только от лучших знатоков своего дела"
+						];
 
 	function slideNext(){
-		if(currentBg.is(':last-child')){
-			currentBg.css('opacity', 0);
-			currentBg = $('#slider :first-child').css('opacity', 1);
+		if(currentSlide.is(':last-child')){
+			currentSlide.css('opacity', 0);
+			currentSlide = $('#slider-image-list :first-child').css('opacity', 1);
+			currentSlideIndex = 0;
 		} else {
-			currentBg = currentBg.css('opacity', 0).next().css('opacity', 1);
+			currentSlide = currentSlide.css('opacity', 0).next().css('opacity', 1);
+			currentSlideIndex++;
 		}
+		setSliderData();
 	}
 
 	function slidePrev(){
-		if(currentBg.is(':first-child')){
-			currentBg.css('opacity', 0);
-			currentBg = $('#slider :last-child').css('opacity', 1);
+		if(currentSlide.is(':first-child')){
+			currentSlide.css('opacity', 0);
+			currentSlide = $('#slider-image-list :last-child').css('opacity', 1);
+			currentSlideIndex = slideAuthorsArr.length-1;
 		} else {
-			currentBg = currentBg.css('opacity', 0).prev().css('opacity', 1);
+			currentSlide = currentSlide.css('opacity', 0).prev().css('opacity', 1);
+			currentSlideIndex--;
 		}
+		setSliderData();
 	}
 
+	// load slider description
+	function setSliderData(){
+		// $('#slider-title-author').animate({'opacity': 0}, 500, function(){
+		// 	$(this).text(slideAuthorsArr[currentSlideIndex]);
+		// }).animate({'opacity': 1}, 500);
+		$('#slider-title-author').text(slideAuthorsArr[currentSlideIndex]);
+		$('#slider-desc-text').text(slideDescArr[currentSlideIndex]);
+	}
+
+	// slider arrow controls
 	$('#slider-controls a').click(function(e){
 		e.preventDefault();
 		clearInterval(sliderTimer);
 		sliderTimer = setInterval(slideNext, 8000);
-		
 		if($(this).attr('id') == 'control-right-arrow') {
 			slideNext();
 		} else {
 			slidePrev();
 		}
 	});
-
-	
-
-    // $('#slider img:gt(0)').hide();
-    // setInterval(function(){
-    //   $('#slider :first-child').fadeOut(1000)
-    //      .next('img').fadeIn(1000)
-    //      .end().appendTo('#slider');}, 
-    //   3000);
 });
