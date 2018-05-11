@@ -128,7 +128,9 @@ nav ul {
 }
 
 .nav-li:hover .drop-list {
-	display: block;
+	/*display: block;*/
+	/*opacity: 1;*/
+	animation: drop-anim .5s ease both;
 }
 
 .active {
@@ -165,12 +167,13 @@ nav ul {
 .drop-list {
 	border-top: 2px solid #860186;
 	margin-top: 0;
-	display: none;
-	animation: drop-anim .5s;
+	/*display: none;*/
+	opacity: 0;
 	position: absolute;
 	background-color: #440144;
 	z-index: 10;
 	font-size: 1rem;
+	transition: .5s;
 }
 
 .drop-button {
@@ -185,6 +188,7 @@ nav ul {
 	background-color: #6d026d;
 	transition: .3s;
 }
+
 /* dropdown-list end */
 
 /* solial network icon styles */
